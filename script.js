@@ -14,6 +14,11 @@ subjects.forEach((s,i)=>{const d=document.createElement("div");d.className="door
  d.innerHTML=`<div class="frame"><img src="${s.img}" alt="" onerror="this.style.display='none'"></div><div class="leaf"><span>${s.icon}</span><small>${s.title}</small></div>`;
  d.onclick=()=>openDoor(i,d);row.appendChild(d)});
 
+
+/* عدسة أصلية: جسم + 6 شفرات + زجاج */
+function lensSVG(){let b="";for(let i=0;i<6;i++)b+=`<polygon class="bl" points="100,100 100,30 152,48" fill="url(#gL)" stroke="#062a0c" stroke-width="1.6" transform="rotate(${i*60} 100 100)"/>`;
+ return `<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="url(#gB)"/><circle cx="100" cy="100" r="84" fill="#0a2e12" stroke="#d6ffb0" stroke-opacity=".55" stroke-width="2"/>${b}<circle cx="100" cy="100" r="26" fill="url(#gG)"/><ellipse cx="80" cy="62" rx="26" ry="11" fill="#fff" opacity=".35" transform="rotate(-30 80 62)"/></svg>`}
+document.querySelectorAll(".lens-wrap").forEach(w=>w.innerHTML=lensSVG());
 /* بتلات + شظايا */
 const pet=document.getElementById("petals");
 for(let i=0;i<18;i++){const p=document.createElement("i");p.className="petal";p.style.left=Math.random()*100+"%";pet.appendChild(p);
@@ -31,30 +36,35 @@ document.querySelectorAll(".embers").forEach(c=>{const x=c.getContext("2d");let 
 
 /* المؤشر + برالاكس الكرة */
 const cur=document.getElementById("cursor"),qx=gsap.quickTo(cur,"x",{duration:.25}),qy=gsap.quickTo(cur,"y",{duration:.25});
-const ox=gsap.quickTo("#orb","x",{duration:1}),oy=gsap.quickTo("#orb","y",{duration:1});
-addEventListener("mousemove",e=>{qx(e.clientX-11);qy(e.clientY-11);ox((e.clientX-innerWidth/2)*.08);oy((e.clientY-innerHeight/2)*.08)});
+gsap.set(".lens-wrap",{transformPerspective:900});
+const rx=gsap.quickTo(".lens-wrap","rotationX",{duration:.9}),ry=gsap.quickTo(".lens-wrap","rotationY",{duration:.9});
+addEventListener("mousemove",e=>{qx(e.clientX-11);qy(e.clientY-11);ry((e.clientX/innerWidth-.5)*40);rx(-(e.clientY/innerHeight-.5)*30)});
 document.addEventListener("mouseover",e=>gsap.to(cur,{scale:e.target.closest(".door,button,a")?2.4:1,duration:.3}));
 
 window.addEventListener("load",()=>{
  gsap.to("#loader",{yPercent:-100,duration:1,delay:.5,ease:"power4.inOut",onComplete:()=>document.getElementById("loader").remove()});
- gsap.from(".w1,.w2",{scale:3,opacity:0,filter:"blur(30px)",duration:1.8,delay:1,ease:"power4.out"});
- gsap.to("#orb",{rotation:6,y:"-=18",duration:2.4,yoyo:true,repeat:-1,ease:"sine.inOut"});
+ gsap.from(".a .wd",{y:90,opacity:0,filter:"blur(22px)",stagger:.22,duration:1.3,delay:1.1,ease:"power4.out"});
+ gsap.from(".lens-wrap",{scale:.2,rotation:-90,opacity:0,duration:2,delay:1,ease:"expo.out"});
+ gsap.to(".lens-wrap",{y:"-=16",duration:2.6,yoyo:true,repeat:-1,ease:"sine.inOut"});
 
  /* الجدول الرئيسي: زوم إن/أوت بين المشاهد مع التمرير */
  const bt=document.getElementById("barTxt");
- const tl=gsap.timeline({scrollTrigger:{trigger:"#story",start:"top top",end:"+=4200",pin:true,scrub:1,
-   onUpdate:s=>{const p=s.progress;bt.textContent=p<.22?"الفصل ١ — الوهم":p<.5?"الفصل ٢ — الحقيقة":p<.78?"الفصل ٣ — الصنعة":"الفصل ٤ — التخصص"}}});
- tl.to(".scene.a .w1",{y:-120,scale:1.4,duration:1})
-   .to(".scene.a",{scale:3,opacity:0,duration:1.2,ease:"power2.in"},1)
-   .fromTo(".scene.b",{opacity:0,scale:.5},{opacity:1,scale:1,duration:1.2},1.3)
-   .from(".shard",{x:()=>gsap.utils.random(-900,900),y:()=>gsap.utils.random(-700,700),rotation:()=>gsap.utils.random(-80,80),scale:.2,opacity:0,stagger:.1,duration:1.2},1.3)
-   .from(".w3",{scale:4,opacity:0,duration:1},1.9)
-   .to(".scene.b",{scale:2.8,opacity:0,duration:1.2,ease:"power2.in"},3.6)
-   .fromTo(".scene.c",{opacity:0,scale:.6},{opacity:1,scale:1,duration:1.2},3.9)
-   .from(".w4,.w4p",{y:80,opacity:0,stagger:.3,duration:1},4.3)
-   .to(".scene.c",{scale:2.5,opacity:0,duration:1.2,ease:"power2.in"},6.2)
-   .fromTo(".scene.d",{opacity:0,scale:.5},{opacity:1,scale:1,duration:1.4},6.6)
-   .from(".tag,.idcard",{y:40,opacity:0,stagger:.3},7.4);
+ const tl=gsap.timeline({scrollTrigger:{trigger:"#story",start:"top top",end:"+=4600",pin:true,scrub:1.2,
+   onUpdate:s=>{const p=s.progress;bt.textContent=p<.2?"الفصل ١ — الوهم":p<.5?"الفصل ٢ — الحقيقة":p<.78?"الفصل ٣ — الصنعة":"الفصل ٤ — التخصص"}}});
+ const out=(s,t)=>tl.to(s,{scale:1.7,opacity:0,filter:"blur(16px)",duration:1.1,ease:"power2.in"},t);
+ const inn=(s,t)=>tl.fromTo(s,{scale:.75,opacity:0,filter:"blur(16px)"},{scale:1,opacity:1,filter:"blur(0px)",duration:1.1,ease:"power2.out"},t);
+ tl.to(".a .lens-wrap",{scale:1.35,duration:1.2},0).to(".a .bl",{rotation:"+=32",svgOrigin:"100 100",duration:1.2},0).to(".a .w1",{y:-90,duration:1.2},0);
+ out(".scene.a",1.2); inn(".scene.b",1.5);
+ tl.from(".shard",{x:()=>gsap.utils.random(-900,900),y:()=>gsap.utils.random(-700,700),rotation:()=>gsap.utils.random(-80,80),scale:.2,opacity:0,stagger:.1,duration:1.3},1.5)
+   .from(".b .lens-wrap",{rotation:140,scale:.3,duration:1.6,ease:"power3.out"},1.7)
+   .from(".b .wd",{y:70,opacity:0,filter:"blur(20px)",stagger:.25,duration:1},2.2)
+   .to(".b .bl",{rotation:"+=40",svgOrigin:"100 100",duration:1.6},2.2);
+ out(".scene.b",3.9); inn(".scene.c",4.2);
+ tl.from(".c .lens-wrap",{y:200,rotation:-120,duration:1.6,ease:"power3.out"},4.3)
+   .from(".c .wd,.w4p",{y:70,opacity:0,filter:"blur(20px)",stagger:.25,duration:1},4.8)
+   .to(".c .bl",{rotation:"+=50",svgOrigin:"100 100",duration:1.6},4.8);
+ out(".scene.c",6.5); inn(".scene.d",6.9);
+ tl.from(".tag,.idcard",{y:40,opacity:0,stagger:.3},7.6);
 
  /* الأقسام: الكلمة الضخمة خلف العناصر + ظهور */
  gsap.utils.toArray(".sec").forEach(s=>{
