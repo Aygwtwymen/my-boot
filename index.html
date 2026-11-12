@@ -1,80 +1,91 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>خيط — دردشة داخل المتاهة</title>
-  <meta name="description" content="خيط مساعد دردشة يعمل بنموذج Gemini. ادخل المتاهة واسأل.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الإنتاج الرقمي — جامعة قسنطينة 3</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="loader"><span>جارٍ فتح البوابة…</span></div>
+<canvas id="stars"></canvas>
 
-  <!-- ===== صفحة الهبوط: داخل المتاهة ===== -->
-  <main id="landing" class="landing">
-    <div id="stage" class="stage" aria-hidden="true">
-      <canvas id="walls"></canvas>
-      <canvas id="thread"></canvas>
-      <span id="door" class="door"></span>
+<nav>
+  <b>الإنتاج الرقمي</b>
+  <div><a href="#about">التخصص</a><a href="#horizons">الآفاق</a><a href="#fields">المجالات</a><a href="#doors">الأبواب</a></div>
+</nav>
+
+<!-- 1: الهبوط (تكبير للداخل أثناء التمرير) -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="tag">جامعة قسنطينة 3 — صالح بوبنيدر</p>
+    <h1><span>إنتاج</span> <span>المحتوى</span> <span class="gold">الرقمي</span></h1>
+    <p class="sub">حيث تتحول الفكرة إلى صورة وصوت وحركة</p>
+    <div class="scroll-hint">مرّر للأسفل لتدخل العالم ↓</div>
+  </div>
+</section>
+
+<!-- 2: عن التخصص (تصغير للخارج) -->
+<section id="about" class="panel">
+  <div class="wrap zoomout">
+    <h2>ما هو تخصص الإنتاج الرقمي؟</h2>
+    <p>تخصص يجمع بين الإبداع والتقنية: تتعلم كيف تفكّر في المحتوى وتصمّمه وتنتجه وتنشره عبر المنصات الرقمية، من الفكرة الأولى حتى المنتج النهائي.</p>
+    <div class="counters">
+      <div><strong data-n="5">0</strong><small>مواد أساسية</small></div>
+      <div><strong data-n="3">0</strong><small>مهارات كبرى: تصميم • صوت • حركة</small></div>
+      <div><strong data-n="100">0</strong><small>% تطبيقي وإبداعي</small></div>
     </div>
+  </div>
+</section>
 
-    <section class="hero">
-      <p class="wordmark">خيط</p>
-      <h1>اسأل. ولا تخَف من التيه.</h1>
-      <p class="lead">خيط مساعد دردشة يعمل بنموذج Gemini. اكتب سؤالك، وسيقودك إلى الجواب خطوة بخطوة.</p>
-      <button id="enter" class="btn" type="button">ادخل المتاهة</button>
-      <p class="note">تحتاج مفتاح Gemini API مجانياً من Google AI Studio. يبقى المفتاح في متصفحك فقط.</p>
-    </section>
-  </main>
+<!-- 3: الآفاق -->
+<section id="horizons" class="panel">
+  <div class="wrap">
+    <h2>آفاق التخصص</h2>
+    <div class="cards">
+      <article>🎬<h3>صانع محتوى</h3><p>إنتاج فيديوهات وسلاسل لليوتيوب والتيك توك والإنستغرام.</p></article>
+      <article>🎨<h3>مصمم غرافيك</h3><p>هويات بصرية، ملصقات، وتصميمات للعلامات التجارية.</p></article>
+      <article>🎞️<h3>مونتير وموشن</h3><p>مونتاج، مؤثرات، ورسوم متحركة للإعلانات والقنوات.</p></article>
+      <article>📣<h3>مسوّق رقمي</h3><p>إدارة المحتوى والحملات والصفحات للمؤسسات والمتاجر.</p></article>
+      <article>💼<h3>عمل حر ومشروع خاص</h3><p>وكالة صغيرة، خدمات للعملاء، أو متجر إلكتروني خاص بك.</p></article>
+    </div>
+  </div>
+</section>
 
-  <!-- ===== غرفة الدردشة ===== -->
-  <section id="chat" class="chat" hidden>
-    <header class="chat-head">
-      <div class="who">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <h2>خيط</h2>
-          <p>دليلك للخروج من المتاهة</p>
-        </div>
-      </div>
-      <div class="head-actions">
-        <button id="open-settings" class="ghost" type="button">الإعدادات</button>
-        <button id="back" class="ghost" type="button">المدخل</button>
-      </div>
-    </header>
+<!-- 4: المجالات -->
+<section id="fields" class="panel">
+  <div class="wrap">
+    <h2>المجالات المتنوعة</h2>
+    <div class="chips">
+      <span>الإعلام الرقمي</span><span>الإعلانات</span><span>الإنتاج السمعي البصري</span><span>التعليم الإلكتروني</span>
+      <span>الصحافة الرقمية</span><span>المؤسسات والشركات</span><span>الألعاب والتطبيقات</span><span>التجارة الإلكترونية</span>
+      <span>الثقافة والفنون</span><span>الوسائط الاجتماعية</span>
+    </div>
+  </div>
+</section>
 
-    <div id="log" class="log" role="log" aria-live="polite"></div>
+<!-- 5: الأبواب الخمسة -->
+<section id="doors">
+  <div class="doors-head"><h2>الأبواب الخمسة</h2><p>اضغط على باب لتدخل إلى مادة وتتعرف عليها</p></div>
+  <div class="world" id="world"><div class="doors" id="doorsRow"></div></div>
+</section>
 
-    <form id="composer" class="composer" autocomplete="off">
-      <label class="sr" for="input">رسالتك</label>
-      <textarea id="input" rows="1" placeholder="اكتب سؤالك هنا" required></textarea>
-      <button id="send" class="btn" type="submit">إرسال</button>
-    </form>
-  </section>
+<!-- نافذة المادة -->
+<div id="room" aria-hidden="true">
+  <div class="room-card">
+    <button id="back">↩ الخروج من الباب</button>
+    <div class="room-icon" id="rIcon"></div>
+    <h2 id="rTitle"></h2>
+    <p id="rDesc"></p>
+    <h4>ماذا ستتعلم؟</h4><ul id="rList"></ul>
+    <h4>الأدوات</h4><div class="chips" id="rTools"></div>
+  </div>
+</div>
 
-  <!-- ===== الإعدادات ===== -->
-  <dialog id="settings" class="settings">
-    <form method="dialog" id="settings-form">
-      <h2>إعدادات الاتصال</h2>
-      <label for="key">مفتاح Gemini API</label>
-      <input id="key" type="password" dir="ltr" placeholder="AIza..." autocomplete="off">
-      <p class="hint">احصل على مفتاح مجاني من
-        <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>.
-        يُحفظ في هذا المتصفح فقط ولا يُرسل إلا إلى Google.</p>
+<footer>صُنع بشغف لطلبة الإنتاج الرقمي — جامعة قسنطينة 3</footer>
 
-      <label for="model">النموذج</label>
-      <input id="model" type="text" dir="ltr" placeholder="gemini-2.5-flash">
-
-      <div class="row">
-        <button id="save-settings" class="btn" value="save">حفظ</button>
-        <button class="ghost" value="cancel">إلغاء</button>
-        <button id="clear-key" class="ghost danger" type="button">حذف المفتاح</button>
-      </div>
-    </form>
-  </dialog>
-
-  <script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
