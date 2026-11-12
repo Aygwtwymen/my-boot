@@ -3,86 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>الإنتاج الرقمي — جامعة قسنطينة 3</title>
+<title>Aymen — بحث في تخصص الإنتاج الرقمي | جامعة قسنطينة 3</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="loader"><span>جارٍ فتح البوابة…</span></div>
-<canvas id="stars"></canvas>
+<div id="loader"><div><b>AYMEN</b><span>جارٍ استدعاء المصعد…</span></div></div>
 
-<nav>
-  <b>الإنتاج الرقمي</b>
-  <div><a href="#about">التخصص</a><a href="#horizons">الآفاق</a><a href="#fields">المجالات</a><a href="#doors">الأبواب</a></div>
-</nav>
+<!-- المصعد: الأبواب + لوحة الطوابق -->
+<div id="elevDoors"><i class="l"></i><i class="r"></i></div>
+<div id="cables"></div>
+<header id="display"><span id="arrow">▼</span><b id="floorNo">6</b><small id="floorName">الغلاف</small></header>
+<aside id="buttons"></aside>
+<div id="brand">Aymen</div>
 
-<!-- 1: الهبوط (تكبير للداخل أثناء التمرير) -->
-<section id="hero">
-  <div class="hero-inner">
-    <p class="tag">جامعة قسنطينة 3 — صالح بوبنيدر</p>
-    <h1><span>إنتاج</span> <span>المحتوى</span> <span class="gold">الرقمي</span></h1>
-    <p class="sub">حيث تتحول الفكرة إلى صورة وصوت وحركة</p>
-    <div class="scroll-hint">مرّر للأسفل لتدخل العالم ↓</div>
+<!-- الطابق 6: الغلاف -->
+<section class="floor" data-floor="6" data-name="الغلاف" data-bg="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box cover">
+    <p class="rise tag">بحث جامعي مصوَّر</p>
+    <h1 class="rise">تخصص <span class="gold">الإنتاج الرقمي</span></h1>
+    <p class="rise sub">الآفاق والمجالات والمواد — رحلة نزول بالمصعد داخل التخصص</p>
+    <div class="rise card-id">
+      <div><small>إعداد الطالب</small><strong>أيمن — Aymen</strong></div>
+      <div><small>المؤسسة</small><strong>جامعة قسنطينة 3 — صالح بوبنيدر</strong></div>
+      <div><small>السنة</small><strong>2026</strong></div>
+    </div>
+    <p class="rise hint">مرّر للأسفل ليبدأ النزول ▼</p>
   </div>
 </section>
 
-<!-- 2: عن التخصص (تصغير للخارج) -->
-<section id="about" class="panel">
-  <div class="wrap zoomout">
-    <h2>ما هو تخصص الإنتاج الرقمي؟</h2>
-    <p>تخصص يجمع بين الإبداع والتقنية: تتعلم كيف تفكّر في المحتوى وتصمّمه وتنتجه وتنشره عبر المنصات الرقمية، من الفكرة الأولى حتى المنتج النهائي.</p>
-    <div class="counters">
-      <div><strong data-n="5">0</strong><small>مواد أساسية</small></div>
-      <div><strong data-n="3">0</strong><small>مهارات كبرى: تصميم • صوت • حركة</small></div>
-      <div><strong data-n="100">0</strong><small>% تطبيقي وإبداعي</small></div>
+<!-- الطابق 5: المقدمة -->
+<section class="floor" data-floor="5" data-name="المقدمة والإشكالية" data-bg="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box">
+    <h2 class="rise">المقدمة والإشكالية</h2>
+    <p class="rise">يعيش العالم اليوم عصر المحتوى: كل علامة تجارية ومؤسسة وجامعة وفرد يحتاج إلى صورة وصوت وقصة تصل إلى الناس عبر الشاشات. ومن هنا ظهر الإنتاج الرقمي كتخصص يربط بين الإبداع الفني والمهارة التقنية.</p>
+    <p class="rise"><b class="gold">الإشكالية:</b> كيف يهيّئ تخصص الإنتاج الرقمي الطالب لسوق عمل متغير؟ وما المواد والمهارات التي تصنع منه منتج محتوى محترفًا؟</p>
+    <div class="counters rise">
+      <div><strong data-n="5">0</strong><small>أبواب ومواد أساسية</small></div>
+      <div><strong data-n="8">0</strong><small>آفاق ومجالات مهنية</small></div>
+      <div><strong data-n="100">0</strong><small>% جانب تطبيقي</small></div>
     </div>
   </div>
 </section>
 
-<!-- 3: الآفاق -->
-<section id="horizons" class="panel">
-  <div class="wrap">
-    <h2>آفاق التخصص</h2>
-    <div class="cards">
-      <article>🎬<h3>صانع محتوى</h3><p>إنتاج فيديوهات وسلاسل لليوتيوب والتيك توك والإنستغرام.</p></article>
-      <article>🎨<h3>مصمم غرافيك</h3><p>هويات بصرية، ملصقات، وتصميمات للعلامات التجارية.</p></article>
-      <article>🎞️<h3>مونتير وموشن</h3><p>مونتاج، مؤثرات، ورسوم متحركة للإعلانات والقنوات.</p></article>
-      <article>📣<h3>مسوّق رقمي</h3><p>إدارة المحتوى والحملات والصفحات للمؤسسات والمتاجر.</p></article>
-      <article>💼<h3>عمل حر ومشروع خاص</h3><p>وكالة صغيرة، خدمات للعملاء، أو متجر إلكتروني خاص بك.</p></article>
+<!-- الطابق 4: التخصص -->
+<section class="floor" data-floor="4" data-name="تعريف التخصص وأهدافه" data-bg="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box">
+    <h2 class="rise">ما هو الإنتاج الرقمي؟</h2>
+    <p class="rise">هو مجال يعنى بتصميم المحتوى الرقمي وإنتاجه ونشره: نصوصًا وصورًا ومقاطع فيديو ورسومًا متحركة وتجارب تفاعلية، وفق معايير فنية وتقنية واتصالية.</p>
+    <div class="grid3 rise">
+      <article><i>🎯</i><h3>الأهداف</h3><p>تكوين طالب يفكّر إبداعيًا، ويتقن الأدوات، ويفهم الجمهور والمنصات.</p></article>
+      <article><i>🧠</i><h3>المهارات</h3><p>تصميم، مونتاج، تصوير، كتابة، وتسويق رقمي في مسار واحد متكامل.</p></article>
+      <article><i>🤝</i><h3>الشراكات</h3><p>ربط التكوين بالمؤسسات والمشاريع الواقعية والتربصات الميدانية.</p></article>
     </div>
   </div>
 </section>
 
-<!-- 4: المجالات -->
-<section id="fields" class="panel">
-  <div class="wrap">
-    <h2>المجالات المتنوعة</h2>
-    <div class="chips">
-      <span>الإعلام الرقمي</span><span>الإعلانات</span><span>الإنتاج السمعي البصري</span><span>التعليم الإلكتروني</span>
-      <span>الصحافة الرقمية</span><span>المؤسسات والشركات</span><span>الألعاب والتطبيقات</span><span>التجارة الإلكترونية</span>
-      <span>الثقافة والفنون</span><span>الوسائط الاجتماعية</span>
+<!-- الطابق 3: المجالات -->
+<section class="floor" data-floor="3" data-name="المجالات المتنوعة" data-bg="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box">
+    <h2 class="rise">المجالات المتنوعة</h2>
+    <p class="rise">يتقاطع الإنتاج الرقمي مع قطاعات كثيرة، وكل قطاع يحتاج منتجي محتوى:</p>
+    <div class="chips rise">
+      <span>الإعلام الرقمي</span><span>الإعلانات</span><span>السمعي البصري</span><span>التعليم الإلكتروني</span><span>الصحافة الرقمية</span>
+      <span>التجارة الإلكترونية</span><span>الألعاب والتطبيقات</span><span>الثقافة والفنون</span><span>وسائل التواصل الاجتماعي</span><span>المؤسسات والشركات</span>
     </div>
   </div>
 </section>
 
-<!-- 5: الأبواب الخمسة -->
-<section id="doors">
-  <div class="doors-head"><h2>الأبواب الخمسة</h2><p>اضغط على باب لتدخل إلى مادة وتتعرف عليها</p></div>
-  <div class="world" id="world"><div class="doors" id="doorsRow"></div></div>
+<!-- الطابق 2: الآفاق -->
+<section class="floor" data-floor="2" data-name="الآفاق المهنية" data-bg="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box">
+    <h2 class="rise">الآفاق المهنية</h2>
+    <div class="grid5 rise">
+      <article><i>🎬</i><h3>صانع محتوى</h3><p>يوتيوب، تيك توك، إنستغرام.</p></article>
+      <article><i>🎨</i><h3>مصمم غرافيك</h3><p>هويات بصرية وإعلانات.</p></article>
+      <article><i>🎞️</i><h3>مونتير / موشن</h3><p>فيديو وإعلانات ومؤثرات.</p></article>
+      <article><i>📣</i><h3>مسوّق رقمي</h3><p>إدارة المنصات والحملات.</p></article>
+      <article><i>💼</i><h3>عمل حر</h3><p>وكالة خاصة أو متجر إلكتروني.</p></article>
+    </div>
+  </div>
 </section>
 
-<!-- نافذة المادة -->
-<div id="room" aria-hidden="true">
-  <div class="room-card">
+<!-- الطابق 1: الأبواب -->
+<section class="floor" id="doorsFloor" data-floor="1" data-name="الأبواب الخمسة" data-bg="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box wide">
+    <h2 class="rise">الأبواب الخمسة</h2>
+    <p class="rise">كل باب يقودك إلى مادة. اضغط على الباب لتدخل وتتوسع في شرحها.</p>
+    <div class="world" id="world"><div class="doors" id="doorsRow"></div></div>
+  </div>
+</section>
+
+<!-- الطابق 0: الخاتمة -->
+<section class="floor" data-floor="0" data-name="الخاتمة" data-bg="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=crop&w=2000&q=80">
+  <div class="bg"></div><div class="veil"></div>
+  <div class="box">
+    <h2 class="rise">الخاتمة والخلاصة</h2>
+    <p class="rise">يتبيّن من هذا البحث أن الإنتاج الرقمي تخصص حيّ يجمع الفكرة بالأداة، ويفتح آفاقًا واسعة في الإعلام والتسويق والتصميم والتعليم. نجاح الطالب فيه يقوم على ثلاثة أعمدة: <b class="gold">التعلّم المستمر، والممارسة، وبناء معرض أعمال.</b></p>
+    <p class="rise sign">شكرًا لحسن الاستماع — <span class="gold">Aymen</span></p>
+    <button class="rise up" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲ الصعود إلى الغلاف</button>
+  </div>
+</section>
+
+<!-- غرفة المادة -->
+<div id="room">
+  <div class="room-hero"><img id="rImg" alt=""><div class="veil"></div>
     <button id="back">↩ الخروج من الباب</button>
-    <div class="room-icon" id="rIcon"></div>
-    <h2 id="rTitle"></h2>
-    <p id="rDesc"></p>
-    <h4>ماذا ستتعلم؟</h4><ul id="rList"></ul>
+    <div class="room-title"><span id="rIcon"></span><h2 id="rTitle"></h2></div>
+  </div>
+  <div class="room-body">
+    <p id="rDesc" class="lead"></p>
+    <div class="cols">
+      <div><h4>ماذا ستتعلم؟</h4><ul id="rList"></ul></div>
+      <div><h4>أين تُستخدم في سوق العمل؟</h4><ul id="rCareer"></ul></div>
+    </div>
     <h4>الأدوات</h4><div class="chips" id="rTools"></div>
   </div>
 </div>
-
-<footer>صُنع بشغف لطلبة الإنتاج الرقمي — جامعة قسنطينة 3</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
