@@ -1,83 +1,186 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aymen — الإنتاج الرقمي | جامعة قسنطينة 3</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الإنتاج الرقمي | Production numérique — بحث أيمن</title>
+  <meta name="description" content="بحث جامعي تفاعلي حول تخصص الإنتاج الرقمي في الجزائر — إعداد وإشراف: أيمن">
+
+  <!-- الخطوط: Reem Kufi للعناوين، IBM Plex Sans Arabic للنص (تدعم العربية واللاتينية) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute"><defs>
-<radialGradient id="gB" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#eaffd0"/><stop offset=".35" stop-color="#5fd35a"/><stop offset=".8" stop-color="#14601f"/><stop offset="1" stop-color="#062a0c"/></radialGradient>
-<radialGradient id="gG" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".25" stop-color="#b9f6ff" stop-opacity=".35"/><stop offset="1" stop-color="#001a10" stop-opacity=".95"/></radialGradient>
-<linearGradient id="gL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d6ffb0"/><stop offset="1" stop-color="#1d7a2a"/></linearGradient>
-</defs></svg>
-<div id="loader"><b>Aymen</b></div>
-<div id="cursor"></div>
-<nav><b>Aymen</b><div><a href="#about">التخصص</a><a href="#fields">المجالات</a><a href="#horizons">الآفاق</a><a href="#doors">الأبواب</a></div></nav>
 
-<!-- القصة: ثلاثة أجواء تتبدل مع التمرير -->
-<section id="story"><div class="stage">
-  <div class="scene a"><div class="bgimg"></div><div class="petals" id="petals"></div>
-    <h1 class="big w1"><span class="wd">هل</span> <span class="wd">تظنّ</span></h1><div class="lens-wrap" id="orb"></div>
-    <h1 class="big w2"><span class="wd">أن</span> <span class="wd">المحتوى</span> <span class="wd">حظّ؟</span></h1></div>
-  <div class="scene b"><div class="shards" id="shards"></div>
-    <div class="lens-wrap lb"></div><h1 class="big w3"><span class="wd">بل</span> <span class="wd">هو</span> <em class="wd">صنعة</em></h1></div>
-  <div class="scene c"><div class="math">∑ ∫ π √ ƒ(x) Δ ∞ ≈ θ ∂</div><canvas class="embers"></canvas>
-    <div class="lens-wrap lc"></div><h1 class="big w4"><span class="wd">تُصقَل</span> <span class="wd">بالعلم</span></h1><p class="w4p">والتطبيق والذوق… وهذا ما يدرّسه تخصص</p></div>
-  <div class="scene d"><p class="tag">بحث مصوَّر · جامعة قسنطينة 3 — صالح بوبنيدر</p>
-    <h1 class="big title">الإنتاج <span>الرقمي</span></h1>
-    <div class="idcard"><div><small>إعداد الطالب</small><b>أيمن — Aymen</b></div><div><small>الموضوع</small><b>الآفاق · المجالات · المواد</b></div></div></div>
-</div></section>
+  <!-- خلفية ثلاثية الأبعاد (Three.js) تظهر خلف كل الأقسام -->
+  <canvas id="bg3d" aria-hidden="true"></canvas>
 
-<section id="about" class="sec cream"><div class="ghost">تعريف</div>
-  <div class="inner">
-    <h2>ما هو الإنتاج الرقمي؟</h2>
-    <p class="lead">تخصص يجمع الإبداع بالتقنية: تصميم المحتوى وإنتاجه ونشره عبر المنصات الرقمية، من الفكرة إلى المنتج النهائي. <b>الإشكالية:</b> كيف يهيّئ هذا التخصص الطالب لسوق عمل يتغيّر بسرعة؟</p>
-    <div class="grid3">
-      <article><i>🎯</i><h3>الأهداف</h3><p>تكوين طالب مبدع، متقن للأدوات، فاهم للجمهور والمنصات.</p></article>
-      <article><i>🧠</i><h3>المهارات</h3><p>تصميم ومونتاج وتصوير وكتابة وتسويق في مسار واحد.</p></article>
-      <article><i>🤝</i><h3>الشراكات</h3><p>تربصات ومشاريع واقعية تربط الجامعة بالمؤسسات.</p></article>
-    </div>
-    <div class="counters"><div><strong data-n="5">0</strong><small>مواد أساسية</small></div><div><strong data-n="10">0</strong><small>مجالات عمل</small></div><div><strong data-n="100">0</strong><small>% تطبيقي</small></div></div>
-  </div></section>
+  <!-- شريط تقدم القراءة -->
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-<section id="fields" class="sec red"><div class="marq"><div>الإعلام · الإعلانات · السمعي البصري · التعليم · الصحافة · التجارة · الألعاب · الفنون · الإعلام · الإعلانات · السمعي البصري · التعليم · الصحافة · التجارة · الألعاب · الفنون ·</div></div>
-  <div class="inner"><h2>المجالات المتنوعة</h2>
-    <p class="lead">يتقاطع الإنتاج الرقمي مع قطاعات كثيرة، وكلها تبحث عن منتجي محتوى:</p>
-    <div class="chips"><span>الإعلام الرقمي</span><span>الإعلانات</span><span>السمعي البصري</span><span>التعليم الإلكتروني</span><span>الصحافة الرقمية</span><span>التجارة الإلكترونية</span><span>الألعاب والتطبيقات</span><span>الثقافة والفنون</span><span>وسائل التواصل</span><span>المؤسسات</span></div>
-  </div></section>
+  <!-- تنقل جانبي بين المشاهد -->
+  <nav class="dots" aria-label="أقسام البحث">
+    <a href="#hero" data-label="البداية" class="is-active"></a>
+    <a href="#intro" data-label="المقدمة"></a>
+    <a href="#axes" data-label="المحاور"></a>
+    <a href="#market" data-label="سوق العمل"></a>
+    <a href="#end" data-label="الخاتمة"></a>
+  </nav>
 
-<section id="horizons" class="sec dark"><div class="ghost">آفاق</div>
-  <div class="inner"><h2>الآفاق المهنية</h2>
-    <div class="grid5">
-      <article><i>🎬</i><h3>صانع محتوى</h3><p>يوتيوب · تيك توك · إنستغرام</p></article>
-      <article><i>🎨</i><h3>مصمم غرافيك</h3><p>هويات بصرية وإعلانات</p></article>
-      <article><i>🎞️</i><h3>مونتير / موشن</h3><p>فيديو ومؤثرات</p></article>
-      <article><i>📣</i><h3>مسوّق رقمي</h3><p>منصات وحملات</p></article>
-      <article><i>💼</i><h3>عمل حر</h3><p>وكالة أو متجر خاص</p></article>
-    </div></div></section>
+  <main class="stage">
 
-<section id="doors" class="sec cream"><div class="ghost">أبواب</div>
-  <div class="inner wide"><h2>الأبواب الخمسة</h2><p class="lead">كل باب مادة. اضغط لتدخل وتتوسع في شرحها.</p>
-    <div class="world" id="world"><div class="doors" id="doorsRow"></div></div></div></section>
+    <!-- ============ 1. الواجهة الترحيبية ============ -->
+    <section id="hero" class="scene scene--hero">
+      <!-- طبقات صور متداخلة (بتدرجات + mix-blend) تتحرك بتأثير Parallax -->
+      <div class="blobs" aria-hidden="true">
+        <i class="blob b1" data-depth="0.08"></i>
+        <i class="blob b2" data-depth="0.15"></i>
+        <i class="blob b3" data-depth="0.05"></i>
+      </div>
+      <div class="scene__inner hero__inner">
+        <p class="hero__meta">بحث جامعي · Recherche universitaire</p>
+        <h1 class="hero__title">
+          <span class="line"><span>الإنتاج الرقمي</span></span>
+          <span class="line"><span>في الجامعات الجزائرية</span></span>
+        </h1>
+        <p class="hero__fr" lang="fr" dir="ltr">La filière « Production numérique » en Algérie : où l’art, l’image et le code se rencontrent.</p>
+        <p class="hero__author">إعداد وإشراف: <strong>أيمن</strong></p>
+        <div class="hero__cta">
+          <a href="#intro" class="btn tilt" data-tilt>ابدأ الرحلة</a>
+          <a href="#axes" class="btn btn--ghost tilt" data-tilt>المحاور مباشرة</a>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">مرّر للأسفل</div>
+    </section>
 
-<section id="end" class="sec dark"><canvas class="embers"></canvas>
-  <div class="inner"><h2 class="big2">شكرًا لحسن الاستماع</h2>
-    <p class="lead">نجاح الطالب في هذا التخصص يقوم على ثلاثة أعمدة: <b>التعلّم المستمر، والممارسة، وبناء معرض أعمال.</b></p>
-    <p class="sign">— Aymen</p><button class="pill-btn" onclick="scrollTo({top:0,behavior:'smooth'})">↑ من البداية</button></div></section>
+    <!-- ============ 2. المقدمة والأهمية ============ -->
+    <section id="intro" class="scene">
+      <div class="scene__inner split">
+        <div class="split__text">
+          <h2>لماذا ظهر هذا التخصص الآن؟</h2>
+          <p>لم تعد المهن الإبداعية منفصلة. المصمم يحتاج فهم الويب، ومطور الويب يحتاج حسّاً بصرياً، وصانع الفيديو يحتاج أدوات تفاعلية. جاء تخصص الإنتاج الرقمي ليجمع هذه المهارات في تكوين جامعي واحد.</p>
+          <p>في الجزائر، يتزامن ذلك مع نمو المتاجر الإلكترونية، والمحتوى العربي على المنصات، والشركات الناشئة التي تبحث عن كفاءات تنتج الفكرة والصورة والواجهة معاً.</p>
+          <p class="fr" lang="fr" dir="ltr"><strong>Pourquoi maintenant ?</strong> Les métiers créatifs convergent : design, vidéo et développement web forment désormais un seul parcours de formation, en phase avec l’économie numérique algérienne.</p>
+        </div>
 
-<div id="bar"><i></i><span id="barTxt">مرّر لتبدأ</span><button id="barBtn">ابدأ الرحلة</button></div>
+        <!-- مخطط تفاعلي: ثلاث دوائر تتداخل لتكوّن التخصص -->
+        <div class="venn" id="venn" aria-label="تقاطع الفنون الرقمية والميديا وتقنيات الويب">
+          <div class="venn__c c1" data-tip="الفنون الرقمية"><span>الفنون<br>الرقمية</span></div>
+          <div class="venn__c c2" data-tip="الميديا"><span>الميديا</span></div>
+          <div class="venn__c c3" data-tip="تقنيات الويب"><span>تقنيات<br>الويب</span></div>
+          <div class="venn__core">الإنتاج<br>الرقمي</div>
+        </div>
+      </div>
+    </section>
 
-<div id="room">
-  <div class="room-hero"><img id="rImg" alt=""><div class="veil"></div><button id="back">↩ الخروج</button>
-    <div class="room-title"><span id="rIcon"></span><h2 id="rTitle"></h2></div></div>
-  <div class="room-body"><p id="rDesc" class="lead"></p>
-    <div class="cols"><div><h4>ماذا ستتعلم؟</h4><ul id="rList"></ul></div><div><h4>في سوق العمل</h4><ul id="rCareer"></ul></div></div>
-    <h4>الأدوات</h4><div class="chips" id="rTools"></div></div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="script.js"></script>
+    <!-- ============ 3. محاور التخصص ============ -->
+    <section id="axes" class="scene">
+      <div class="scene__inner">
+        <h2 class="center">أربعة محاور تصنع المنتج الرقمي</h2>
+        <p class="center sub">انقر على أي بطاقة لتنقلب وتكشف التفاصيل · <span lang="fr" dir="ltr">Cliquez pour retourner</span></p>
+
+        <div class="cards">
+          <!-- كل بطاقة لها وجه أمامي وخلفي (3D flip) -->
+          <button class="card tilt" data-tilt aria-pressed="false">
+            <span class="card__face card__front">
+              <b class="ico">◐</b>
+              <h3>UX / UI</h3>
+              <small lang="fr" dir="ltr">Expérience &amp; interface</small>
+            </span>
+            <span class="card__face card__back">
+              <p>دراسة المستخدم، النماذج الأولية، وتصميم واجهات واضحة وسهلة بالعربية (RTL) وبالفرنسية.</p>
+              <small>أدوات: Figma · اختبار قابلية الاستخدام</small>
+            </span>
+          </button>
+
+          <button class="card tilt" data-tilt aria-pressed="false">
+            <span class="card__face card__front">
+              <b class="ico">▲</b>
+              <h3>الجرافيك 2D / 3D</h3>
+              <small lang="fr" dir="ltr">Graphisme 2D / 3D</small>
+            </span>
+            <span class="card__face card__back">
+              <p>الهوية البصرية، الرسم الرقمي، والنمذجة والتحريك ثلاثي الأبعاد لصناعة عوالم بصرية مقنعة.</p>
+              <small>أدوات: Illustrator · Photoshop · Blender</small>
+            </span>
+          </button>
+
+          <button class="card tilt" data-tilt aria-pressed="false">
+            <span class="card__face card__front">
+              <b class="ico">≋</b>
+              <h3>المونتاج والصوتيات</h3>
+              <small lang="fr" dir="ltr">Montage &amp; son</small>
+            </span>
+            <span class="card__face card__back">
+              <p>سرد القصة بالصورة والصوت: المونتاج، الموشن غرافيك، المعالجة الصوتية والمؤثرات.</p>
+              <small>أدوات: Premiere · After Effects · Audition</small>
+            </span>
+          </button>
+
+          <button class="card tilt" data-tilt aria-pressed="false">
+            <span class="card__face card__front">
+              <b class="ico">&lt;/&gt;</b>
+              <h3>تطوير الويب التفاعلي</h3>
+              <small lang="fr" dir="ltr">Web interactif</small>
+            </span>
+            <span class="card__face card__back">
+              <p>HTML وCSS وJavaScript لبناء مواقع تفاعلية وتجارب ويب بالحركة والرسوم ثلاثية الأبعاد.</p>
+              <small>أدوات: JavaScript · GSAP · Three.js</small>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. آفاق المستقبل وسوق العمل ============ -->
+    <section id="market" class="scene">
+      <div class="scene__inner">
+        <h2 class="center">أين يعمل الخريج؟</h2>
+        <p class="center sub">اختر بيئة عمل لترى الأدوار والمهارات · <span lang="fr" dir="ltr">Choisissez un secteur</span></p>
+
+        <div class="market">
+          <div class="chips" role="tablist" aria-label="بيئات العمل">
+            <button role="tab" class="chip is-active" data-key="startup" aria-selected="true">شركات ناشئة</button>
+            <button role="tab" class="chip" data-key="agency" aria-selected="false">وكالات رقمية</button>
+            <button role="tab" class="chip" data-key="media" aria-selected="false">إنتاج ومحتوى</button>
+            <button role="tab" class="chip" data-key="free" aria-selected="false">عمل حر</button>
+          </div>
+
+          <!-- لوحة تتبدل محتوياتها من script.js -->
+          <div class="panel" id="panel" role="tabpanel" aria-live="polite">
+            <h3 id="pTitle"></h3>
+            <p id="pText"></p>
+            <ul id="pRoles" class="tags"></ul>
+            <p id="pFr" class="fr" lang="fr" dir="ltr"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. الخاتمة والشكر ============ -->
+    <section id="end" class="scene scene--end">
+      <div class="scene__inner end__inner">
+        <h2>الخاتمة</h2>
+        <p>الإنتاج الرقمي ليس مجرد تخصص جديد، بل لغة مهنية جديدة تجمع الفكرة والصورة والبرمجة. ونجاحه في الجزائر مرتبط بتكوين تطبيقي، ومشاريع حقيقية، وربط الطلبة بسوق العمل مبكراً.</p>
+        <p class="fr" lang="fr" dir="ltr">En conclusion, la production numérique offre aux étudiants algériens un parcours complet, créatif et employable.</p>
+        <div class="thanks">
+          <p>شكر وتقدير لكل من دعم هذا العمل، وللأساتذة والزملاء الذين ألهموا فكرته.</p>
+          <p class="sign">إعداد وإشراف: <strong>أيمن</strong></p>
+          <p lang="fr" dir="ltr" class="fr">Merci de votre attention.</p>
+        </div>
+        <a href="#hero" class="btn tilt" data-tilt>العودة إلى البداية</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- المكتبات عبر CDN: GSAP + ScrollTrigger + Lenis (تمرير ناعم) + Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
